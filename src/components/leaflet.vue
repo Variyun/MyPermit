@@ -1,0 +1,67 @@
+<template>
+<div style="height:100%" id="map-container"></div>
+</template>
+
+<script>
+import leaflet from "leaflet";
+
+export default {
+  name: "mymap",
+
+  data() {
+    return {
+      leaf: null //Interactive map
+    };
+  },
+
+  mounted() {
+    this.initMap();
+  },
+
+  methods: {
+    //initializes leaflet map
+    initMap() {
+      
+      var OSMtile = new leaflet.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+          attribution:
+            'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, Routes @ <a href="https://developer.tomtom.com/routing-api/">TomTom</a>',
+          maxZoom: 18
+        }
+      );
+      //mapbox://styles/mapbox/satellite-streets-v11
+      var satellite = new leaflet.tileLayer(
+        "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}",
+        {
+          attribution:
+            'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>, Routes @ <a href="https://developer.tomtom.com/routing-api/">TomTom</a>',
+          maxZoom: 18,
+          id: "mapbox.satellite",
+          accessToken:
+            "pk.eyJ1IjoiYWEtdmFyaXl1biIsImEiOiJjanZzYmhja2QxM2l5NGFvOHpqdXhiNDJvIn0.ez9bRvvx0eg9RZVmjiTPpQ"
+        }
+      );
+  
+      //this.mymap = L.map("map-container").setView([51.0839, -114.1439], 13);
+      this.leaf = new leaflet.map("map-container", {
+        center: [51.0839, -114.1439],
+        zoom: 13,
+        layers: [OSMtile]
+      });
+      //adds scale bar
+      leaflet.control.scale().addTo(this.leaf);
+      //adds layer control to the map
+      var defaultTile = { OpenStreetMap: OSMtile, Satellite: satellite };
+      leaflet.control.layers(defaultTile).addTo(this.leaf);
+    } //---- end of map initialization ----
+  }
+};
+</script>
+
+<style scoped>
+  #map-container {
+    z-index: 1;
+  }
+
+</style>

@@ -21,7 +21,7 @@ export default {
   methods: {
     //initializes leaflet map
     initMap() {
-      
+      //OSM tile layer
       var OSMtile = new leaflet.tileLayer(
         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         {
@@ -30,7 +30,7 @@ export default {
           maxZoom: 18
         }
       );
-      //mapbox://styles/mapbox/satellite-streets-v11
+      //satellite tile layer
       var satellite = new leaflet.tileLayer(
         "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}",
         {
@@ -42,8 +42,7 @@ export default {
             "pk.eyJ1IjoiYWEtdmFyaXl1biIsImEiOiJjanZzYmhja2QxM2l5NGFvOHpqdXhiNDJvIn0.ez9bRvvx0eg9RZVmjiTPpQ"
         }
       );
-  
-      //this.mymap = L.map("map-container").setView([51.0839, -114.1439], 13);
+      //leaflet map 
       this.leaf = new leaflet.map("map-container", {
         center: [51.0839, -114.1439],
         zoom: 13,

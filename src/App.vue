@@ -1,6 +1,6 @@
 <template>
  <v-app>
-   <v-content class="pt-0">
+   <v-content class="pa-0">
     <toolbar/>
    </v-content>
  </v-app>

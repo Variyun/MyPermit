@@ -4,18 +4,35 @@
 
 <script>
 import leaflet from "leaflet";
+import {eventBus} from "../main.js";
+import "leaflet.markercluster";
 
 export default {
   name: "mymap",
 
   data() {
     return {
-      leaf: null //Interactive map
+      leaf: null, //Interactive map
+      geoLayer: null,
     };
   },
 
   mounted() {
     this.initMap();
+    
+    eventBus.$on("displayPermits", data => {
+      // if markers already exists, remove old ones
+      console.log(data);
+      if (this.geoLayer != null) {
+        this.leaf.removeLayer(this.geoLayer);
+      }
+      this.geoLayer = leaflet.geoJSON(data);
+      var cluster = leaflet.markerClusterGroup();
+      cluster.addLayer(this.geoLayer);
+      this.leaf.addLayer(cluster);
+      this.leaf.fitBounds([[50.9, -114.2], [51.2, -113.9]]);
+    });
+    
   },
 
   methods: {
@@ -59,6 +76,8 @@ export default {
 </script>
 
 <style scoped>
+  @import "../../node_modules/leaflet.markercluster/dist/MarkerCluster.css";
+  @import "../../node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css";
 
   #map-container {
     z-index: 1;

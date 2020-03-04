@@ -1,9 +1,7 @@
 <template>
-  <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-    >
+  <v-app id="inspire" class="overflow-hidden">
+    <!-- Navigation Drawer -->
+    <v-navigation-drawer v-model="drawer" dark id="drawer" absolute>
       <v-list dense>
         <v-list-item link>
           <v-list-item-action>
@@ -23,42 +21,44 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-
-    <v-app-bar
-      app
-      color="indigo"
-      dark
-    >
+    <!-- Top Nav Bar -->
+    <v-app-bar app color="indigo" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>MyPermit!</v-toolbar-title>
     </v-app-bar>
-
+    <!-- Leaflet Map -->
     <v-content>
-      <v-container
-        class="fill-height"
-        fluid
-      >
-        <v-row
-          align="center"
-          justify="center"
-        >
-          <v-col class="text-center">
-
-          </v-col>
-        </v-row>
+      <v-container class="fill-height pa-0 ma-0" fluid >
+        <mymap />
       </v-container>
     </v-content>
   </v-app>
 </template>
 
 <script>
-  export default {
-    name: "toolbar",
-    props: {
-      source: String,
-    },
-    data: () => ({
-      drawer: null,
-    }),
-  }
+import mymap from "./leaflet";
+
+export default {
+  name: "toolbar",
+  components: {
+    mymap
+  },
+  props: {
+    source: String
+  },
+  data: () => ({
+    drawer: null
+  })
+};
 </script>
+
+<style scoped>
+ * {
+   overflow: hidden;
+ }
+
+ #drawer {
+   z-index: 2;
+ }
+
+</style>

@@ -1,5 +1,5 @@
 <template>
-<div style="height:100%" id="map-container"></div>
+  <v-container class="fill-height" fluid id="map-container" position="static" ></v-container>
 </template>
 
 <script>
@@ -26,7 +26,7 @@ export default {
         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         {
           attribution:
-            'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, Routes @ <a href="https://developer.tomtom.com/routing-api/">TomTom</a>',
+            'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
           maxZoom: 18
         }
       );
@@ -35,7 +35,7 @@ export default {
         "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}",
         {
           attribution:
-            'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>, Routes @ <a href="https://developer.tomtom.com/routing-api/">TomTom</a>',
+            'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
           maxZoom: 18,
           id: "mapbox.satellite",
           accessToken:
@@ -60,6 +60,7 @@ export default {
 </script>
 
 <style scoped>
+
   #map-container {
     z-index: 1;
   }

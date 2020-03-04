@@ -1,21 +1,19 @@
 <template>
  <v-app>
-  <toolbar/>
-
-    <mymap/>
+   <v-content class="pt-0">
+    <toolbar/>
+   </v-content>
  </v-app>
 </template>
 
 <script>
 import toolbar from './components/toolbar';
-import mymap from './components/leaflet';
 
 export default {
   name: 'App',
 
   components: {
     toolbar,
-    mymap,
   },
 
   data: () => ({
@@ -25,7 +23,7 @@ export default {
 </script>
 
 <style scoped>
-  * {
-    overflow-y: hidden;
-  }
+   * {
+   overflow: hidden;
+ }
 </style>

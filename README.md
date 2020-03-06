@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # BookExplorer
+=======
+# MyPermit!
+>>>>>>> Development
 
 Made for Engineering 551 - Advanced Geospatial Topics Winter 2020  
 Lab 2 - Geoweb Application   

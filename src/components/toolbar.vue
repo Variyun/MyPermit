@@ -77,7 +77,7 @@
             </v-col>
           </v-row>
           <v-row align="center" justify="center">
-            <v-btn @click="submitData">SUBMIT</v-btn>
+            <v-btn @click.stop="submitData">SUBMIT</v-btn>
           </v-row>
         </v-col>
       </v-sheet>

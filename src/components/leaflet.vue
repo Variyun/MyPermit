@@ -1,10 +1,10 @@
 <template>
-  <v-container class="fill-height" fluid id="map-container" position="static" ></v-container>
+  <v-container class="fill-height" fluid id="map-container" position="static"></v-container>
 </template>
 
 <script>
 import leaflet from "leaflet";
-import {eventBus} from "../main.js";
+import { eventBus } from "../main.js";
 import "leaflet.markercluster";
 
 export default {
@@ -13,26 +13,66 @@ export default {
   data() {
     return {
       leaf: null, //Interactive map
-      geoLayer: null,
+      cluster: null
     };
   },
 
   mounted() {
     this.initMap();
-    
+
     eventBus.$on("displayPermits", data => {
       // if markers already exists, remove old ones
-      console.log(data);
-      if (this.geoLayer != null) {
-        this.leaf.removeLayer(this.geoLayer);
+      if (this.cluster != null) {
+        this.leaf.removeLayer(this.cluster);
       }
-      this.geoLayer = leaflet.geoJSON(data);
-      var cluster = leaflet.markerClusterGroup();
-      cluster.addLayer(this.geoLayer);
-      this.leaf.addLayer(cluster);
-      this.leaf.fitBounds([[50.9, -114.2], [51.2, -113.9]]);
+      //add marker clusters
+      var geoLayer = leaflet.geoJSON(data);
+      //bind popup to all markers
+      this.cluster = leaflet.markerClusterGroup();
+      this.cluster.addLayer(geoLayer);
+
+      var date, work, contract, comm, addr;
+      date = work = contract = comm = addr = "Unknown";
+
+      this.cluster.eachLayer(function(layer) {
+        //check to see if any info field is not null, save field
+        if (layer.feature.properties.issueddate != null) {
+          date = layer.feature.properties.issueddate;
+        }
+        if (layer.feature.properties.workclassgroup != null) {
+          work = layer.feature.properties.workclassgroup;
+        }
+        if (layer.feature.properties.contractorname != null) {
+          contract = layer.feature.properties.contractorname;
+        }
+        if (layer.feature.properties.communityname != null) {
+          comm = layer.feature.properties.communityname;
+        }
+        if (layer.feature.properties.originaladdress != null) {
+          addr = layer.feature.properties.originaladdress;
+        }
+
+        layer
+          .bindPopup(
+            "Issued Date: " +
+              date +
+              "<br/>Work Class: " +
+              work +
+              "<br/>Contractor Name: " +
+              contract +
+              "<br/>Community Name: " +
+              comm +
+              "<br/>Original Address: " +
+              addr
+          )
+          .openPopup();
+      });
+      this.leaf.addLayer(this.cluster);
+      this.leaf.fitBounds([
+        [50.9, -114.2],
+        [51.2, -113.9]
+      ]);
     });
-    
   },
 
   methods: {
@@ -59,7 +99,7 @@ export default {
             "pk.eyJ1IjoiYWEtdmFyaXl1biIsImEiOiJjanZzYmhja2QxM2l5NGFvOHpqdXhiNDJvIn0.ez9bRvvx0eg9RZVmjiTPpQ"
         }
       );
-      //leaflet map 
+      //leaflet map
       this.leaf = new leaflet.map("map-container", {
         center: [51.0839, -114.1439],
         zoom: 13,
@@ -76,11 +116,10 @@ export default {
 </script>
 
 <style scoped>
-  @import "../../node_modules/leaflet.markercluster/dist/MarkerCluster.css";
-  @import "../../node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css";
+@import "../../node_modules/leaflet.markercluster/dist/MarkerCluster.css";
+@import "../../node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css";
 
-  #map-container {
-    z-index: 1;
-  }
-
+#map-container {
+  z-index: 1;
+}
 </style>

@@ -4,9 +4,38 @@
     <v-app-bar app color="indigo" dark class="pl-2">
       <v-toolbar-title class="font-weight-black">MyPermit!</v-toolbar-title>
       <v-spacer />
-      <v-btn icon>
-        <v-icon large>mdi-information</v-icon>
-      </v-btn>
+
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn icon  dark v-on="on" @click="about = !about">
+            <v-icon large> mdi-information</v-icon>
+          </v-btn>
+        </template>
+        <span>Learn more about the app!</span>
+      </v-tooltip>
+
+      <v-dialog v-model="about" width="500" scrollable>
+        <v-card>
+          <v-card-title class="headline grey lighten-2" primary-title>About MyPermit!</v-card-title>
+
+          <v-card-text class="pt-2">
+            <h3>Do you want to find your permit or other permits quickly?</h3>
+            <br />
+            <p
+              style="font-size:110%;"
+            >Worry not because with MyPermit!, you can easily search for permits within any date range and find them on the map.</p>
+            <br />
+            <h3 style="text-align:center;">Thank You for Using MyPermit!</h3>
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn @click="about = false" icon>
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-app-bar>
     <!-- Leaflet Map -->
     <v-content>
@@ -93,7 +122,7 @@
 <script>
 import mymap from "./leaflet";
 import axios from "axios";
-import {eventBus} from "../main.js";
+import { eventBus } from "../main.js";
 
 export default {
   name: "toolbar",
@@ -111,6 +140,7 @@ export default {
     menu2: false,
     alert: "If you are seeing this, contact the developer",
     snackbar: false,
+    about: false
   }),
 
   methods: {
@@ -134,7 +164,6 @@ export default {
         return 1;
       }
     },
-
 
     //use the building permit api to get permits
     findPermit() {
@@ -166,8 +195,9 @@ export default {
         })
         .catch(function(error) {
           console.log(error);
-          _this.alert="There has been an error with the query or API! Please Contact the developer!"
-          _this.alert=true;
+          _this.alert =
+            "There has been an error with the query or API! Please Contact the developer!";
+          _this.alert = true;
         });
     },
 
@@ -207,5 +237,9 @@ export default {
 
 .sheets:hover {
   opacity: 1;
+}
+
+.tool {
+  z-index: 1000;
 }
 </style>

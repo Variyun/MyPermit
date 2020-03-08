@@ -12,7 +12,7 @@ Lab 2 - Geoweb Application
 * Marker Clusters: Once permits are found, they are visualized on the map. Groups of markers will cluster together and clicking on the cluster will expand the marker group. 
 
 ![Marker Cluster GIF](https://media.giphy.com/media/TfKuRwz1mC764HU2UY/giphy.gif)
-
+ 
    We change the month and year like so:
    
 ![Calender GIF](https://media.giphy.com/media/YrkU9QvvZRKETp9qmG/giphy.gif)

@@ -13,6 +13,10 @@ Lab 2 - Geoweb Application
 
 ![Marker Cluster GIF](https://media.giphy.com/media/TfKuRwz1mC764HU2UY/giphy.gif)
 
+   We change the month and year like so:
+   
+![Calender GIF](https://media.giphy.com/media/YrkU9QvvZRKETp9qmG/giphy.gif)
+
 * Marker Spiderfier: If there are several markers that are overlapping, they will be clustered and clicking on it will display all overlapping markers. Users can click on the markers to display information about the permit. 
 
 ![Overlapping Marker GIF](https://media.giphy.com/media/JsPKoSFYA5SISM8LFw/giphy.gif)

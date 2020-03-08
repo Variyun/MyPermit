@@ -7,7 +7,7 @@ Lab 2 - Geoweb Application
 
 * Building Permit Date Range Query: This allows users to select a date range and display all permits within the date range.
 
-![Search GIF](https://media.giphy.com/media/JsPKoSFYA5SISM8LFw/giphy.gif)
+![Search GIF](https://media.giphy.com/media/ZdZxD6pDgMw06EBzV5/giphy.gif)
 
 * Marker Clusters: Once permits are found, they are visualized on the map. Groups of markers will cluster together and clicking on the cluster will expand the marker group. 
 

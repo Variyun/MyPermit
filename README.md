@@ -7,7 +7,19 @@ Lab 2 - Geoweb Application
 
 * Building Permit Date Range Query: This allows users to select a date range and display all permits within the date range.
 
-* Permit Visualization: Once permits are found, they are visualized on the map where users can click on the marker to display relevant information about.  
+![Search GIF](https://media.giphy.com/media/JsPKoSFYA5SISM8LFw/giphy.gif)
+
+* Marker Clusters: Once permits are found, they are visualized on the map. Groups of markers will cluster together and clicking on the cluster will expand the marker group. 
+
+![Marker Cluster GIF](https://media.giphy.com/media/TfKuRwz1mC764HU2UY/giphy.gif)
+
+* Marker Spiderfier: If there are several markers that are overlapping, they will be clustered and clicking on it will display all overlapping markers. Users can click on the markers to display information about the permit. 
+
+![Overlapping Marker GIF](https://media.giphy.com/media/JsPKoSFYA5SISM8LFw/giphy.gif)
+
+* Layer Control: Users can switch between the standard map view from OpenStreetMap or satellite view courtesy of Mapbox.
+
+![Layer Control GIF](https://media.giphy.com/media/MWriQv4MGDR48SST0J/giphy.gif)
 
 ## Instructions to Run the Website
 

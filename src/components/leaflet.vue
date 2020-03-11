@@ -99,6 +99,17 @@ export default {
             "pk.eyJ1IjoiYWEtdmFyaXl1biIsImEiOiJjanZzYmhja2QxM2l5NGFvOHpqdXhiNDJvIn0.ez9bRvvx0eg9RZVmjiTPpQ"
         }
       );
+
+      var traffic = new leaflet.tileLayer(
+        "https://api.mapbox.com/styles/v1/aa-variyun/ck7mealnw0old1jm22vfwe1ox/tiles/256/{z}/{x}/{y}?access_token={accessToken}",
+        {
+          attribution:
+            'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+          accessToken:
+            "pk.eyJ1IjoiYWEtdmFyaXl1biIsImEiOiJjanZzYmhja2QxM2l5NGFvOHpqdXhiNDJvIn0.ez9bRvvx0eg9RZVmjiTPpQ"
+        }
+      );
       //leaflet map
       this.leaf = new leaflet.map("map-container", {
         center: [51.0839, -114.1439],
@@ -108,7 +119,7 @@ export default {
       //adds scale bar
       leaflet.control.scale().addTo(this.leaf);
       //adds layer control to the map
-      var defaultTile = { OpenStreetMap: OSMtile, Satellite: satellite };
+      var defaultTile = { OpenStreetMap: OSMtile, Satellite: satellite, Traffic: traffic};
       leaflet.control.layers(defaultTile).addTo(this.leaf);
     } //---- end of map initialization ----
   }
